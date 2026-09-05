@@ -334,6 +334,26 @@
       "default": "xyz",
       "doc": "Influences the y direction of the tile coordinates. The global-mercator (aka Spherical Mercator) profile is assumed."
     },
+    "emptyTileBehavior": {
+      "type": "enum",
+      "values": {
+        "transparent": {
+          "doc": "Load the tile as an empty tile with nothing to draw."
+        },
+        "missing": {
+          "doc": "Treat the tile as missing, like a 404 response: a loaded tile from another zoom level shows through in its place."
+        }
+      },
+      "default": "transparent",
+      "doc": "How a tile response with an empty body, such as HTTP 204, is handled. A tile server with partial coverage can answer 204 where it has no data and use `missing` to let the parent tile show through, without the browser console noise that 404 responses cause.",
+      "sdk-support": {
+        "basic functionality": {
+          "js": "6.8.0",
+          "android": "https://github.com/maplibre/maplibre-gl-js/issues/3990",
+          "ios": "https://github.com/maplibre/maplibre-gl-js/issues/3990"
+        }
+      }
+    },
     "minzoom": {
       "type": "number",
       "default": 0,
@@ -455,6 +475,26 @@
       "default": "xyz",
       "doc": "Influences the y direction of the tile coordinates. The global-mercator (aka Spherical Mercator) profile is assumed."
     },
+    "emptyTileBehavior": {
+      "type": "enum",
+      "values": {
+        "transparent": {
+          "doc": "Draw the tile as fully transparent."
+        },
+        "missing": {
+          "doc": "Treat the tile as missing, like a 404 response: a loaded tile from another zoom level shows through in its place."
+        }
+      },
+      "default": "transparent",
+      "doc": "How a tile response with an empty body, such as HTTP 204, is handled. A tile server with partial coverage can answer 204 where it has no data and use `missing` to let the parent tile show through, without the browser console noise that 404 responses cause.",
+      "sdk-support": {
+        "basic functionality": {
+          "js": "6.8.0",
+          "android": "https://github.com/maplibre/maplibre-gl-js/issues/3990",
+          "ios": "https://github.com/maplibre/maplibre-gl-js/issues/3990"
+        }
+      }
+    },
     "attribution": {
       "type": "string",
       "doc": "Contains an attribution to be displayed when the map is shown to a user."
@@ -523,6 +563,26 @@
       "default": 512,
       "units": "pixels",
       "doc": "The minimum visual size to display tiles for this layer. Only configurable for raster layers."
+    },
+    "emptyTileBehavior": {
+      "type": "enum",
+      "values": {
+        "transparent": {
+          "doc": "Load the tile without elevation data."
+        },
+        "missing": {
+          "doc": "Treat the tile as missing, like a 404 response: a loaded tile from another zoom level supplies the elevation in its place."
+        }
+      },
+      "default": "transparent",
+      "doc": "How a tile response with an empty body, such as HTTP 204, is handled.",
+      "sdk-support": {
+        "basic functionality": {
+          "js": "6.8.0",
+          "android": "https://github.com/maplibre/maplibre-gl-js/issues/3990",
+          "ios": "https://github.com/maplibre/maplibre-gl-js/issues/3990"
+        }
+      }
     },
     "attribution": {
       "type": "string",
