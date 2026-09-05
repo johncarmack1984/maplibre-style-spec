@@ -125,4 +125,25 @@ describe('Validate source_raster_dem', () => {
         });
         expect(errors).toHaveLength(0);
     });
+
+    test('Should pass when emptyTileBehavior is missing', () => {
+        const errors = validateRasterDEMSource({
+            validateSpec: validate,
+            value: {type: 'raster-dem', url: 'https://example.com/tiles.json', emptyTileBehavior: 'missing'},
+            styleSpec: v8,
+            style: {} as any
+        });
+        expect(errors).toHaveLength(0);
+    });
+
+    test('Should return error when emptyTileBehavior is not one of its values', () => {
+        const errors = validateRasterDEMSource({
+            validateSpec: validate,
+            value: {type: 'raster-dem', url: 'https://example.com/tiles.json', emptyTileBehavior: 'hidden'} as any,
+            styleSpec: v8,
+            style: {} as any
+        });
+        expect(errors).toHaveLength(1);
+        checkErrorMessage(errors[0].message, 'emptyTileBehavior', 'transparent, missing', 'hidden');
+    });
 });
